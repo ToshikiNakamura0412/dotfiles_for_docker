@@ -11,7 +11,10 @@ RUN apk add \
     python3-dev \
     py3-pip \
     curl \
+    tzdata \
     tree
+
+RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 RUN pip3 install neovim pynvim
 RUN mkdir -p /root/.vim/undo
