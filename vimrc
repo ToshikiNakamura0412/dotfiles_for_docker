@@ -163,7 +163,15 @@ augroup END
 " === プラグイン ===
 " - vim-airline
 " テーマ
-let g:airline_theme = 'papercolor'
+let g:airline_theme = 'behelit'
+" let g:airline_theme = 'fairyfloss'
+" let g:airline_theme = 'jellybeans'
+" let g:airline_theme = 'lighthaus'
+" let g:airline_theme = 'murmur'
+" let g:airline_theme = 'serene'
+" let g:airline_theme = 'simple'
+" let g:airline_theme = 'xtermlight'
+" let g:airline_theme = 'zenburn'
 " ステータスバーの項目を変更
 let g:airline_section_a = airline#section#create(['mode', 'crypt'])
 " ステータスバーでフルパスを表示
