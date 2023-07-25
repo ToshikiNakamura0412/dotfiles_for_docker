@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'roxma/nvim-yarp'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/vim-auto-save'
 Plug 'machakann/vim-highlightedyank'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'Shougo/deoplete.nvim'
@@ -175,6 +176,14 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 " ステータスバーにエラー情報を表示（ALEと一緒に使用）
 let g:airline#extensions#ale#enabled = 1
+
+" - vim-auto-save
+" 自動保存オン
+let g:auto_save = 1
+" インサートモード中は自動保存しない
+let g:auto_save_in_insert_mode = 0
+" 自動保存の通知を非表示
+let g:auto_save_silent = 1
 
 " - deoplete
 " 有効化
