@@ -15,11 +15,11 @@ Plug 'tomtom/tcomment_vim'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'roxma/nvim-yarp'
 Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
-Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'zchee/deoplete-clang'
 Plug 'deoplete-plugins/deoplete-jedi'
 call plug#end()
@@ -99,22 +99,28 @@ set termguicolors
 " ===  操作系 ===
 " [Insertモード] jjをESCとして扱う
 inoremap jj <Esc>
+" [Insertモード] 行途中で次の行に新規挿入
+inoremap <C-o> <C-o>o
 " [Normal] ;でコマンド入力
 noremap ; :
+" 行をまたいで移動
+set whichwrap=b,s,h,l,<,>,[,],~
 " [Normal] 行頭にカーソル移動
 noremap <Space>h ^
+noremap <Space><Left> ^
 " [Normal] 行末にカーソル移動
 noremap <Space>l $
+noremap <Space><Right> $
+" [Normal] ページスクロール(上)
+noremap <C-Up> <C-u>
+" [Normal] ページスクロール(下)
+noremap <C-Down> <C-d>
 " [Normal] 新規タブを開く
 noremap <C-t> :enew<CR>
-" [Normal] タブを閉じる
-" noremap <C-w> :bd<CR>
 " [Normal] 左のタブに移動
 noremap <C-p> :bprevious<CR>
 " [Normal] 右のタブに移動
 noremap <C-n> :bnext<CR>
-" [Normal] w!! でsudoで保存可
-cmap w!! w !sudo tee % > /dev/null
 
 
 " === 編集系 ===
@@ -186,14 +192,6 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 " ステータスバーにエラー情報を表示（ALEと一緒に使用）
 let g:airline#extensions#ale#enabled = 1
-
-" - vim-auto-save
-" 自動保存オン
-let g:auto_save = 1
-" インサートモード中は自動保存しない
-let g:auto_save_in_insert_mode = 0
-" 自動保存の通知を非表示
-let g:auto_save_silent = 1
 
 " - deoplete
 " 有効化
