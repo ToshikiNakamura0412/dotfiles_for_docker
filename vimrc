@@ -20,6 +20,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-clang'
+Plug 'deoplete-plugins/deoplete-jedi'
 call plug#end()
 
 

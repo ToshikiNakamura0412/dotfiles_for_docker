@@ -15,9 +15,11 @@ RUN apt install -y --no-install-recommends \
     python3-pip \
     curl \
     tzdata \
-    tree
+    tree \
+    clang
 
-RUN pip3 install neovim pynvim
+
+RUN pip3 install neovim pynvim jedi
 RUN mkdir -p /root/.vim/undo
 RUN mkdir -p /root/.vim/plugged
 RUN mkdir -p /root/.config/nvim
