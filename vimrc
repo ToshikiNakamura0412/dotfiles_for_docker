@@ -83,8 +83,17 @@ augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
-" Windowsでパスの区切り文字をスラッシュで扱う
-" set shellslash
+" menuone: 補完候補が一つしかなくてもポップアップメニューを表示
+set completeopt=menuone,noinsert
+" 補完表示時のEnterで改行をしない
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+" 補完候補の選択をTab/Shitf-Tabで変更
+inoremap <expr><Tab>  pumvisible() ? "<C-n>" : "<Tab>"
+inoremap <expr><S-Tab>  pumvisible() ? "<C-p>" : "<S-Tab>"
+" ポップアップメニューの最大高さ
+set pumheight=10
+" シンタックスハイライト
+set termguicolors
 
 
 " ===  操作系 ===
@@ -189,6 +198,10 @@ let g:auto_save_silent = 1
 " - deoplete
 " 有効化
 let g:deoplete#enable_at_startup = 1
+
+" - deoplete-clang'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
 " - ALE(Asynchronous Lint Engine)
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
