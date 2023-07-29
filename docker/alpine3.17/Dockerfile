@@ -12,11 +12,12 @@ RUN apk add \
     py3-pip \
     curl \
     tzdata \
-    tree
+    tree \
+    clang
 
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-RUN pip3 install neovim pynvim
+RUN pip3 install neovim pynvim jedi
 RUN mkdir -p /root/.vim/undo
 RUN mkdir -p /root/.vim/plugged
 RUN mkdir -p /root/.config/nvim
