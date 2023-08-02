@@ -20,8 +20,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'zchee/deoplete-clang'
 Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'zchee/deoplete-clang'
 call plug#end()
 
 
@@ -198,8 +198,8 @@ let g:airline#extensions#ale#enabled = 1
 let g:deoplete#enable_at_startup = 1
 
 " - deoplete-clang'
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang.so.1'
-let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+" let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang.so.1'
+" let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
 " - ALE(Asynchronous Lint Engine)
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
