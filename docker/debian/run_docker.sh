@@ -11,6 +11,5 @@ docker run \
     -it \
     --privileged \
     -v $WORK_DIR:/home/$USER/workdir \
-    test-dotfiles-for-alpine \
-    sh \
-    --login
+    test-dotfiles-for-debian \
+    sh

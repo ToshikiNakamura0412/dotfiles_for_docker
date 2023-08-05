@@ -22,8 +22,8 @@ RUN mkdir -p /root/.vim/undo
 RUN mkdir -p /root/.vim/plugged
 RUN mkdir -p /root/.config/nvim
 
-RUN git clone https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git /root/dotfiles_for_docker
-ENV DOTFILES="/root/dotfiles_for_docker"
+RUN git clone https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git /root/dotfiles
+ENV DOTFILES="/root/dotfiles"
 RUN cp $DOTFILES/profile.sh /etc/profile.d/profile.sh
 RUN cp $DOTFILES/vimrc /root/.vimrc
 RUN cp $DOTFILES/init.vim /root/.config/nvim/init.vim

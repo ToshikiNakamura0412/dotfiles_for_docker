@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM debian:latest
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
@@ -18,7 +18,7 @@ RUN apt install -y --no-install-recommends \
     tree \
     clang
 
-RUN pip3 install neovim pynvim jedi
+# RUN pip3 install neovim pynvim jedi
 RUN mkdir -p /root/.vim/undo
 RUN mkdir -p /root/.vim/plugged
 RUN mkdir -p /root/.config/nvim
