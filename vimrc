@@ -8,6 +8,12 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
+" for line in readfile("/etc/os-release")
+" endfor
+let osnameline = system('grep PRETTY /etc/os-release')
+let osnameinfos = split(osnameline, " ")
+let osname=substitute(osnameinfos[0],"PRETTY_NAME=\"","","g")
+
 " ===  プラグイン ===
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
@@ -21,7 +27,10 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'deoplete-plugins/deoplete-jedi'
-" Plug 'zchee/deoplete-clang'
+
+if osname == "Ubuntu"
+    Plug 'zchee/deoplete-clang'
+endif
 call plug#end()
 
 
@@ -57,9 +66,6 @@ set number
 set title
 " 現在の行を強調表示
 set cursorline
-" 120列目を強調
-" set colorcolumn=120
-highlight ColorColumn guibg=#202020 ctermbg=lightgray
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
 " ビープ音を可視化
@@ -97,14 +103,8 @@ set termguicolors
 
 
 " ===  操作系 ===
-" [Insertモード] jjをESCとして扱う
-inoremap jj <Esc>
-" [Insertモード] 行途中で次の行に新規挿入
-inoremap <C-o> <C-o>o
 " [Normal] ;でコマンド入力
 noremap ; :
-" 行をまたいで移動
-set whichwrap=b,s,h,l,<,>,[,],~
 " [Normal] 行頭にカーソル移動
 noremap <Space>h ^
 noremap <Space><Left> ^
@@ -117,10 +117,20 @@ noremap <C-Up> <C-u>
 noremap <C-Down> <C-d>
 " [Normal] 新規タブを開く
 noremap <C-t> :enew<CR>
-" [Normal] 左のタブに移動
-noremap <C-p> :bprevious<CR>
 " [Normal] 右のタブに移動
 noremap <C-n> :bnext<CR>
+" [Normal] 左のタブに移動
+noremap <C-p> :bprevious<CR>
+" [Insertモード] jjをESCとして扱う
+inoremap jj <Esc>
+" [Insertモード] 行途中で次の行に新規挿入
+inoremap <C-o> <C-o>o
+" [Insertモード] カーソルを右に移動
+inoremap <C-f> <Right>
+" [Insertモード] カーソルを左に移動
+inoremap <C-b> <Left>
+" 行をまたいで移動
+set whichwrap=b,s,h,l,<,>,[,],~
 
 
 " === 編集系 ===
@@ -198,8 +208,10 @@ let g:airline#extensions#ale#enabled = 1
 let g:deoplete#enable_at_startup = 1
 
 " - deoplete-clang'
-" let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang.so.1'
-" let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+if osname == "Ubuntu"
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang.so.1'
+    let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+endif
 
 " - ALE(Asynchronous Lint Engine)
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
