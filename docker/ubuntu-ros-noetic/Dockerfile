@@ -16,12 +16,14 @@ RUN apt install -y --no-install-recommends \
     curl \
     tzdata \
     tree \
-    clang
+    clang \
+    python3-catkin-tools
 
 RUN pip3 install neovim pynvim jedi
 RUN mkdir -p /root/.vim/undo
 RUN mkdir -p /root/.vim/plugged
 RUN mkdir -p /root/.config/nvim
+RUN mkdir -p /root/catkin_ws/src/<pkg-name>
 
 RUN git clone https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git /root/dotfiles
 ENV DOTFILES="/root/dotfiles"
