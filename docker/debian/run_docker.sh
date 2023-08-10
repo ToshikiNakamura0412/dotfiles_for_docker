@@ -12,4 +12,5 @@ docker run \
     --privileged \
     -v $WORK_DIR:/home/$USER/workdir \
     test-dotfiles-for-debian \
-    sh
+    bash \
+    --login
