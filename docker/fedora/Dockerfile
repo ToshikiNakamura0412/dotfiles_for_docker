@@ -1,14 +1,18 @@
-FROM {os-name}:{version}
+FROM fedora:latest
 
-RUN *** *** -y \
+RUN dnf install -y \
     cmake \
+    make \
+    automake \
+    gcc \
+    gcc-c++ \
+    kernel-devel \
     git \
     vim \
     neovim \
     tmux \
-    build-essential \
     python3 \
-    python3-dev \
+    python3-devel \
     python3-pip \
     curl \
     tzdata \
