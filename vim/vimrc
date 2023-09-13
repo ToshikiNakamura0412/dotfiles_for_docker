@@ -23,15 +23,20 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'deoplete-plugins/deoplete-jedi'
 
 if osname == "Ubuntu"
-    Plug 'zchee/deoplete-clang'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'deoplete-plugins/deoplete-jedi'
 endif
 call plug#end()
+if osname == "Ubuntu"
+    " coc.nvim 拡張機能(C++, Vim, Yaml, Bash, Json, Python, CMake, XML)
+    let g:coc_global_extensions = ['coc-clangd', 'coc-vimlsp', 'coc-yaml', 'coc-sh', 'coc-json', 'coc-jedi', 'coc-cmake', 'coc-xml']
+endif
 
 
 " === 基本設定系 ===
@@ -203,24 +208,45 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 " ステータスバーにエラー情報を表示（ALEと一緒に使用）
 let g:airline#extensions#ale#enabled = 1
 
-" - deoplete
-" 有効化
-let g:deoplete#enable_at_startup = 1
-
-" - deoplete-clang'
 if osname == "Ubuntu"
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang.so.1'
-    let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
-endif
+    " - coc.nvim
+    " <Tab>で候補を選択する関数
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+    " 補完表示時のEnterで改行をしない
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+    " 補完候補の選択をTab/Shitf-Tabで変更
+    inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+    inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>" " "\<C-h>"
+    " Hで注釈表示
+    nnoremap <silent> H :<C-u>call CocAction('doHover') <cr>
+    " dfでDefinition
+    nmap <silent> df <Plug>(coc-definition)
+    " rfでReferences
+    nmap <silent> rf <Plug>(coc-references)
+    " rnでRename
+    nmap <silent> rn <Plug>(coc-rename)
+    " fmtでFormat
+    nmap <silent> fmt <Plug>(coc-format)
+else
+    " - deoplete
+    " 有効化
+    let g:deoplete#enable_at_startup = 1
 
-" - ALE(Asynchronous Lint Engine)
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-let g:ale_sign_colmun_always = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_echo_cursor = 0
-let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 0
-let g:ale_list_window_size = 3
+    " - ALE(Asynchronous Lint Engine)
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_sign_colmun_always = 1
+    let g:ale_lint_on_save = 1
+    let g:ale_lint_on_enter = 0
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_echo_cursor = 0
+    let g:ale_open_list = 1
+    let g:ale_keep_list_window_open = 0
+    let g:ale_list_window_size = 3
+endif
