@@ -12,7 +12,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 " endfor
 let osnameline = system('grep PRETTY /etc/os-release')
 let osnameinfos = split(osnameline, " ")
-let osname=substitute(osnameinfos[0],"PRETTY_NAME=\"","","g")
+let osname = substitute(osnameinfos[0],"PRETTY_NAME=\"","","g")
 
 " ===  プラグイン ===
 call plug#begin('~/.vim/plugged')
