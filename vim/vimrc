@@ -8,8 +8,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
-" for line in readfile("/etc/os-release")
-" endfor
 let osnameline = system('grep PRETTY /etc/os-release')
 let osnameinfos = split(osnameline, " ")
 let osname = substitute(osnameinfos[0],"PRETTY_NAME=\"","","g")
@@ -24,7 +22,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-highlightedyank'
 
-if osname == "Ubuntu"
+if osname == "Ubuntu" || osname == "Debian"
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 else
     Plug 'Shougo/deoplete.nvim'
@@ -33,7 +31,7 @@ else
     Plug 'deoplete-plugins/deoplete-jedi'
 endif
 call plug#end()
-if osname == "Ubuntu"
+if osname == "Ubuntu" || osname == "Debian"
     " coc.nvim 拡張機能(C++, Vim, Yaml, Bash, Json, Python, CMake, XML)
     let g:coc_global_extensions = ['coc-clangd', 'coc-vimlsp', 'coc-yaml', 'coc-sh', 'coc-json', 'coc-jedi', 'coc-cmake', 'coc-xml']
 endif
@@ -208,7 +206,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 " ステータスバーにエラー情報を表示（ALEと一緒に使用）
 let g:airline#extensions#ale#enabled = 1
 
-if osname == "Ubuntu"
+if osname == "Ubuntu" || osname == "Debian"
     " - coc.nvim
     " <Tab>で候補を選択する関数
     function! s:check_back_space() abort

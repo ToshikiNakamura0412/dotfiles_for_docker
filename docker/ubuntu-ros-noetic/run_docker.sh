@@ -10,7 +10,7 @@ docker run \
     --rm \
     -it \
     --privileged \
-    -v $WORK_DIR:/root/catkin_ws/src/<pkg-name> \
+    -v $WORK_DIR:/root/catkin_ws/src/\<pkg-name\> \
     test-dotfiles-for-ros \
     bash \
     --login
