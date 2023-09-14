@@ -25,7 +25,7 @@ RUN cd /root/ && wget https://github.com/neovim/neovim/releases/download/stable/
 RUN cd /root/ && tar xzvf nvim-linux64.tar.gz
 RUN rm /root/nvim-linux64.tar.gz
 RUN mv /root/nvim-linux64 /
-RUN ln -sf /nvim-linux64/bin/nvim  /usr/bin/nvim
+RUN ln -sf /nvim-linux64/bin/nvim /usr/bin/nvim
 
 # vim/neovim setup
 RUN pip3 install jedi-language-server
