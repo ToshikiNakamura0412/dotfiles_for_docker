@@ -37,6 +37,7 @@ RUN mkdir -p /root/.vim/plugged
 RUN mkdir -p /root/.config/nvim
 RUN mkdir -p /root/catkin_ws/src/\<pkg-name\>
 
+# dotfiles
 RUN git clone https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git /root/dotfiles
 ENV DOTFILES="/root/dotfiles"
 RUN ln -sf $DOTFILES/profile.sh /etc/profile.d/profile.sh
