@@ -32,8 +32,8 @@ else
 endif
 call plug#end()
 if osname == "Ubuntu" || osname == "Debian"
-    " coc.nvim 拡張機能(C++, Vim, Yaml, Bash, Json, Python, CMake, XML)
-    let g:coc_global_extensions = ['coc-clangd', 'coc-vimlsp', 'coc-yaml', 'coc-sh', 'coc-json', 'coc-jedi', 'coc-cmake', 'coc-xml']
+    " coc.nvim 拡張機能(C++, Vim, Yaml, Json, Python, CMake, XML)
+    let g:coc_global_extensions = ['coc-clangd', 'coc-vimlsp', 'coc-yaml', 'coc-json', 'coc-jedi', 'coc-cmake', 'coc-xml']
 endif
 
 
