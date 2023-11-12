@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# SCRIPT_DIR=$(cd $(dirname $0); pwd)
-# DOTFILES_DIR="$HOME/dotfiles_for_docker"
 USER="nakamura"
 WORK_DIR="$HOME/code"
 docker run \
