@@ -45,6 +45,3 @@ RUN ln -sf $DOTFILES/vim/vimrc /root/.vimrc
 RUN ln -sf $DOTFILES/vim/init.vim /root/.config/nvim/init.vim
 RUN ln -sf $DOTFILES/vim/coc-settings.json /root/.config/nvim/coc-settings.json
 RUN ln -sf $DOTFILES/tmux.conf /root/.tmux.conf
-
-# ROS pkg
-RUN mkdir -p /root/catkin_ws/src/\<pkg-name\>
