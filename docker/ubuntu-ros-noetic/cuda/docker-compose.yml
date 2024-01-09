@@ -1,0 +1,39 @@
+version: "3.9"
+
+x-workspace-source: &WORKSPACE_SOURCE
+  "/home/nakamura/ros1_ws_obj_detect"
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /home/user
+    ipc: host
+    network_mode: "host"
+    privileged: true
+    environment:
+      - DISPLAY=$DISPLAY
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - __NV_PRIME_RENDER_OFFLOAD=1
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: /dev/dri
+        target: /dev/dri
+      - type: bind
+        source: *WORKSPACE_SOURCE
+        target: /home/user/ws
+    tty: true
+    command: /bin/bash
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
