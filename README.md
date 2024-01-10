@@ -8,5 +8,14 @@
 - debian
 - fedora
 - opensuse
+- ubuntu ros
+  - 20.04 + ROS1 Noetic
+  - 20.04 + ROS1 Noetic + CUDA(devel)
 - ubuntu20.04
-- ubuntu20.04 ROS Noetic
+## Usage
+```
+cd docker/<distro dir>
+docker compose up -d        # create and start
+docker compose exec ws bash # use shell
+docker compose down         # stop and remove
+```
