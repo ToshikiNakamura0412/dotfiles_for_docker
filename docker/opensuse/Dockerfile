@@ -1,32 +1,32 @@
 FROM opensuse/leap:latest
+ARG USERNAME=user
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 
-RUN zypper install -y \
-    cmake \
-    git \
-    vim \
-    neovim \
-    tmux \
-    python3 \
-    python3-devel \
-    python3-pip \
-    curl \
-    timezone \
-    tree \
-    clang
-RUN zypper install -y --type pattern devel_basis
+RUN groupadd -g $USER_GID $USERNAME \
+    && useradd -u $USER_UID -g $USER_GID -m $USERNAME \
+    && zypper refresh \
+    && zypper install -y sudo git vim \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+RUN zypper refresh && zypper update -y
+# RUN zypper install -y \
+#     cmake \
+#     neovim \
+#     tmux \
+#     python3 \
+#     python3-devel \
+#     python3-pip \
+#     curl \
+#     timezone \
+#     tree \
+#     clang
+# RUN zypper install -y --type pattern devel_basis
 
-RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN ln -f /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-# vim/neovim setup
-RUN pip3 install neovim pynvim jedi
-RUN mkdir -p /root/.vim/undo
-RUN mkdir -p /root/.vim/plugged
-RUN mkdir -p /root/.config/nvim
+ENV SHELL /bin/bash
 
-# dotfiles
-RUN git clone https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git /root/dotfiles
-ENV DOTFILES="/root/dotfiles"
-RUN cp $DOTFILES/profile.sh /root/.bashrc
-RUN cp $DOTFILES/vim/vimrc /root/.vimrc
-RUN cp $DOTFILES/vim/init.vim /root/.config/nvim/init.vim
-RUN cp $DOTFILES/tmux.conf /root/.tmux.conf
+USER $USERNAME
+
+CMD ["/bin/bash"]
