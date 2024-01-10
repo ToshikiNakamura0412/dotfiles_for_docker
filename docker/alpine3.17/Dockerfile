@@ -5,10 +5,9 @@ RUN addgroup -S $USERNAME \
     && adduser -S $USERNAME -G $USERNAME \
     && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     && echo "$USERNAME:$USERNAME" | chpasswd
-RUN apk add bash sudo
-# RUN apk add \
-#     bash \
-#     git \
+RUN apk update && apk add bash sudo git vim tzdata
+RUN apk update && apk upgrade
+# RUN apk update && apk add \
 #     cmake \
 #     neovim \
 #     tmux \
@@ -17,12 +16,11 @@ RUN apk add bash sudo
 #     python3-dev \
 #     py3-pip \
 #     curl \
-#     tzdata \
 #     tree \
 #     clang
-
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ENV SHELL /bin/bash
-# RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
 USER $USERNAME
 
 CMD ["/bin/bash"]

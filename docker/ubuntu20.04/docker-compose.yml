@@ -5,7 +5,7 @@ x-workspace-source: &WORKSPACE_SOURCE
 
 services:
   ws:
-    container_name: fedora-ws
+    container_name: ubuntu2004-ws
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,7 +13,12 @@ services:
     network_mode: "host"
     tty: true
     privileged: true
+    environment:
+      DISPLAY: $DISPLAY
     volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
       - type: bind
         source: *WORKSPACE_SOURCE
         target: /home/user/ws
