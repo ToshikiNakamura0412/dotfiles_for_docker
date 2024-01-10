@@ -1,32 +1,28 @@
 FROM alpine:3.17
+ARG USERNAME=user
 
-RUN apk add \
-    cmake \
-    git \
-    vim \
-    neovim \
-    tmux \
-    build-base \
-    python3 \
-    python3-dev \
-    py3-pip \
-    curl \
-    tzdata \
-    tree \
-    clang
+RUN addgroup -S $USERNAME \
+    && adduser -S $USERNAME -G $USERNAME \
+    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+    && echo "$USERNAME:$USERNAME" | chpasswd
+RUN apk add bash sudo
+# RUN apk add \
+#     bash \
+#     git \
+#     cmake \
+#     neovim \
+#     tmux \
+#     build-base \
+#     python3 \
+#     python3-dev \
+#     py3-pip \
+#     curl \
+#     tzdata \
+#     tree \
+#     clang
 
-RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+ENV SHELL /bin/bash
+# RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+USER $USERNAME
 
-# vim/neovim setup
-RUN pip3 install neovim pynvim jedi
-RUN mkdir -p /root/.vim/undo
-RUN mkdir -p /root/.vim/plugged
-RUN mkdir -p /root/.config/nvim
-
-# dotfiles
-RUN git clone https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git /root/dotfiles
-ENV DOTFILES="/root/dotfiles"
-RUN cp $DOTFILES/profile.sh /etc/profile.d/profile.sh
-RUN cp $DOTFILES/vim/vimrc /root/.vimrc
-RUN cp $DOTFILES/vim/init.vim /root/.config/nvim/init.vim
-RUN cp $DOTFILES/tmux.conf /root/.tmux.conf
+CMD ["/bin/bash"]
