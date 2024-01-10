@@ -18,4 +18,4 @@ services:
         source: *WORKSPACE_SOURCE
         target: /home/user/ws
     working_dir: /home/user/ws
-    command: bash
+    command: /bin/bash -c "bash"
