@@ -1,5 +1,5 @@
+FROM nvidia/cuda:12.3.1-devel-ubuntu20.04
 ARG ROS_DISTRO=noetic
-FROM ros:${ROS_DISTRO}
 ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -13,10 +13,17 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get update && apt-get install -y lsb-release curl
+
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-desktop \
     python3-catkin-tools \
+    python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
+RUN rosdep init
 # RUN apt-get update && apt-get install -y --no-install-recommends \
 #     tmux \
 #     cmake \
@@ -24,7 +31,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #     python3 \
 #     python3-dev \
 #     python3-pip \
-#     curl \
 #     wget \
 #     tree \
 #     clangd \
