@@ -1,36 +1,36 @@
 FROM fedora:latest
+ARG USERNAME=user
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 
-RUN dnf install -y \
-    cmake \
-    make \
-    automake \
-    gcc \
-    gcc-c++ \
-    kernel-devel \
-    git \
-    vim \
-    neovim \
-    tmux \
-    python3 \
-    python3-devel \
-    python3-pip \
-    curl \
-    tzdata \
-    tree \
-    clang
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN groupadd -g $USER_GID $USERNAME \
+    && useradd -u $USER_UID -g $USERNAME $USERNAME \
+    && dnf install -y sudo git vim \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+RUN dnf check-update && dnf upgrade -y
 
-# vim/neovim setup
-RUN pip3 install neovim pynvim jedi
-RUN mkdir -p /root/.vim/undo
-RUN mkdir -p /root/.vim/plugged
-RUN mkdir -p /root/.config/nvim
+# RUN dnf install -y \
+#     cmake \
+#     make \
+#     automake \
+#     gcc \
+#     gcc-c++ \
+#     kernel-devel \
+#     neovim \
+#     tmux \
+#     python3 \
+#     python3-devel \
+#     python3-pip \
+#     curl \
+#     tzdata \
+#     tree \
+#     clang
 
-# dotfiles
-RUN git clone https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git /root/dotfiles
-ENV DOTFILES="/root/dotfiles"
-RUN cp $DOTFILES/profile.sh /etc/profile.d/profile.sh
-RUN cp $DOTFILES/vim/vimrc /root/.vimrc
-RUN cp $DOTFILES/vim/init.vim /root/.config/nvim/init.vim
-RUN cp $DOTFILES/tmux.conf /root/.tmux.conf
+ENV SHELL /bin/bash
+
+USER $USERNAME
+
+CMD ["/bin/bash"]
