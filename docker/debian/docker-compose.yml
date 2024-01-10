@@ -1,0 +1,33 @@
+version: "3.9"
+
+x-workspace-source: &WORKSPACE_SOURCE
+  "~/ws"
+
+services:
+  ws:
+    container_name: debian-ws
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ipc: host
+    network_mode: "host"
+    tty: true
+    privileged: true
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: *WORKSPACE_SOURCE
+        target: /home/user/ws
+    working_dir: /home/user/ws
+    command: /bin/bash -c "bash"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
