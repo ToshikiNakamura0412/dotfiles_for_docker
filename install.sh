@@ -1,16 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
-# tmux
-echo "setting tmux... "
-if [ -d ~/.tmux ]; then
-    rm -rf ~/.tmux
+# install
+echo ""
+echo "install prerequisites..."
+source /etc/os-release
+OS_NAME=$(echo $ID)
+if [ $OS_NAME = "ubuntu" ] || [ $OS_NAME = "debian" ]; then
+    $SCRIPT_DIR/scripts/install_for_debian.sh
 fi
-ln -sfv $SCRIPT_DIR/tmux.conf ~/.tmux.conf
-git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-~/.tmux/plugins/tpm/bin/install_plugins
 echo ">>> Done"
 echo ""
+
+# setup
+$SCRIPT_DIR/scripts/setup.sh
 
 echo ""
 echo "==="
