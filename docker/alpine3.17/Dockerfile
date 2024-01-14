@@ -9,18 +9,16 @@ RUN apk update && apk add bash sudo git vim tzdata
 RUN apk update && apk upgrade
 # RUN apk update && apk add \
 #     cmake \
-#     neovim \
-#     tmux \
 #     build-base \
 #     python3 \
 #     python3-dev \
 #     py3-pip \
-#     curl \
-#     tree \
-#     clang
+#     tree
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ENV SHELL /bin/bash
 
 USER $USERNAME
+RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles
+RUN ~/dotfiles/install.sh
 
 CMD ["/bin/bash"]
