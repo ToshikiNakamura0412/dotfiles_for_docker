@@ -1,6 +1,5 @@
 # dotfiles_for_docker
 ## setting file
-- Vim
 - Neovim
 - tmux
 ## docker
