@@ -11,3 +11,4 @@ echo ">>> Done"
 echo ""
 
 # Neovim
+$SCRIPT_DIR/../nvim/scripts/setup_nvim.sh
