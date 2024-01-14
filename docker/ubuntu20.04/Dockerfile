@@ -14,20 +14,16 @@ RUN groupadd --gid $USER_GID $USERNAME \
 RUN apt-get update && apt-get upgrade -y
 # RUN apt-get update && apt-get install -y --no-install-recommends \
 #     cmake \
-#     tmux \
 #     build-essential \
 #     python3 \
 #     python3-dev \
 #     python3-pip \
-#     curl \
-#     wget \
-#     tzdata \
 #     tree \
-#     clangd \
-#     nodejs \
-#     npm
+#     && rm -rf /var/lib/apt/lists/*
 ENV SHELL /bin/bash
 
 USER $USERNAME
+RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles
+RUN ~/dotfiles/install.sh
 
 CMD ["/bin/bash"]

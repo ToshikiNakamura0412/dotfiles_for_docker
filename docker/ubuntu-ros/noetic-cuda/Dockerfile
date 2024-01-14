@@ -25,17 +25,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 RUN rosdep init
 # RUN apt-get update && apt-get install -y --no-install-recommends \
-#     tmux \
 #     cmake \
 #     build-essential \
 #     python3 \
 #     python3-dev \
 #     python3-pip \
-#     wget \
 #     tree \
-#     clangd \
-#     nodejs \
-#     npm \
 #     && rm -rf /var/lib/apt/lists/*
 ENV SHELL /bin/bash
 
@@ -45,5 +40,7 @@ RUN echo "source ~/ws/devel/setup.bash" >> ~/.bashrc
 RUN echo "export ROS_WORKSPACE=~/ws" >> ~/.bashrc
 RUN echo "export ROS_PACKAGE_PATH=~/ws/src:\$ROS_PACKAGE_PATH" >> ~/.bashrc
 RUN echo "export ROSCONSOLE_FORMAT='[\${severity}] [\${time}] [\${node}]: \${message}'" >> ~/.bashrc
+RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles
+RUN ~/dotfiles/install.sh
 
 CMD ["/bin/bash"]

@@ -13,6 +13,9 @@ services:
     network_mode: "host"
     tty: true
     privileged: true
+    environment:
+      TERM: screen-256color
+      LANG: C.UTF-8
     volumes:
       - type: bind
         source: *WORKSPACE_SOURCE

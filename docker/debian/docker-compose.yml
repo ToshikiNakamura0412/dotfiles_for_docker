@@ -14,6 +14,8 @@ services:
     tty: true
     privileged: true
     environment:
+      TERM: screen-256color
+      LANG: C.UTF-8
       DISPLAY: $DISPLAY
     volumes:
       - type: bind
