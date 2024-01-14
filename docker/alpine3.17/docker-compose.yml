@@ -2,6 +2,8 @@ version: "3.9"
 
 x-workspace-source: &WORKSPACE_SOURCE
   "~/ws"
+x-profile: &PROFILE
+  "~/dotfiles_for_docker/profile.sh"
 
 services:
   ws:
@@ -20,5 +22,8 @@ services:
       - type: bind
         source: *WORKSPACE_SOURCE
         target: /home/user/ws
+      - type: bind
+        source: *PROFILE
+        target: /home/user/profile.sh
     working_dir: /home/user/ws
-    command: /bin/bash -c "bash"
+    command: /bin/bash -c "echo 'source ~/profile.sh' >> ~/.bashrc && bash"
