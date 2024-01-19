@@ -30,6 +30,7 @@ ENV SHELL /bin/bash
 USER $USERNAME
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 RUN echo "source ~/ws/devel/setup.bash" >> ~/.bashrc
+RUN echo "export ROS_DISTRO=${ROS_DISTRO}" >> ~/.bashrc
 RUN echo "export ROS_WORKSPACE=~/ws" >> ~/.bashrc
 RUN echo "export ROS_PACKAGE_PATH=~/ws/src:\$ROS_PACKAGE_PATH" >> ~/.bashrc
 RUN echo "export ROSCONSOLE_FORMAT='[\${severity}] [\${time}] [\${node}]: \${message}'" >> ~/.bashrc
