@@ -7,10 +7,10 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
 - Neovim
 - tmux
 ## docker
-- alpine3.17
-- debian
-- fedora
-- opensuse
+- [WIP] alpine3.17
+- [WIP] debian
+- [WIP] fedora
+- [WIP] opensuse
 - ubuntu ros
   - 20.04 + ROS1 Noetic
   - 20.04 + ROS1 Noetic + CUDA(devel)
