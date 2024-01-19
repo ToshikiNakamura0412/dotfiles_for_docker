@@ -2,6 +2,12 @@ version: "3.9"
 
 x-workspace-source: &WORKSPACE_SOURCE
   "~/ws"
+x-profile: &PROFILE
+  "~/dotfiles_for_docker/profile.sh"
+x-gitconfig: &GITCONFIG
+  "~/dotfiles_for_docker/gitconfig"
+x-gitignore: &GITIGNORE
+  "~/dotfiles_for_docker/gitignore"
 
 services:
   ws:
@@ -24,6 +30,15 @@ services:
       - type: bind
         source: *WORKSPACE_SOURCE
         target: /home/user/ws
+      - type: bind
+        source: *PROFILE
+        target: /home/user/.bash_aliases
+      - type: bind
+        source: *GITCONFIG
+        target: /home/user/.gitconfig
+      - type: bind
+        source: *GITIGNORE
+        target: /home/user/.config/git/ignore
     working_dir: /home/user/ws
     command: /bin/bash -c "bash"
     deploy:
