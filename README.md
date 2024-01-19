@@ -1,5 +1,9 @@
 # dotfiles_for_docker
-## setting file
+## Clone
+```
+git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git
+```
+## Setting file
 - Neovim
 - tmux
 ## docker
