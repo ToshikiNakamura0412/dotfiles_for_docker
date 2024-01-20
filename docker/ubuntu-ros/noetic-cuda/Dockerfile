@@ -21,17 +21,14 @@ RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-desktop \
     python3-catkin-tools \
-    python3-rosdep \
-    && rm -rf /var/lib/apt/lists/*
+    python3-rosdep
 RUN rosdep init
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     cmake \
-#     build-essential \
-#     python3 \
-#     python3-dev \
-#     python3-pip \
-#     tree \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash-completion \
+    tree
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm /etc/apt/apt.conf.d/docker-clean
+
 ENV SHELL /bin/bash
 
 USER $USERNAME
@@ -41,7 +38,7 @@ RUN echo "export ROS_DISTRO=${ROS_DISTRO}" >> ~/.bashrc
 RUN echo "export ROS_WORKSPACE=~/ws" >> ~/.bashrc
 RUN echo "export ROS_PACKAGE_PATH=~/ws/src:\$ROS_PACKAGE_PATH" >> ~/.bashrc
 RUN echo "export ROSCONSOLE_FORMAT='[\${severity}] [\${time}] [\${node}]: \${message}'" >> ~/.bashrc
-RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles
-RUN ~/dotfiles/install.sh
+RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
+RUN ~/dotfiles_for_docker/install.sh
 
 CMD ["/bin/bash"]

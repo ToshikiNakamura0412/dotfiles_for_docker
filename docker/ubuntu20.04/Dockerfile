@@ -12,18 +12,21 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 RUN apt-get update && apt-get upgrade -y
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     cmake \
-#     build-essential \
-#     python3 \
-#     python3-dev \
-#     python3-pip \
-#     tree \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash-completion \
+    tree \
+    cmake \
+    build-essential \
+    python3 \
+    python3-dev \
+    python3-pip
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm /etc/apt/apt.conf.d/docker-clean
+
 ENV SHELL /bin/bash
 
 USER $USERNAME
-RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles
-RUN ~/dotfiles/install.sh
+RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
+RUN ~/dotfiles_for_docker/install.sh
 
 CMD ["/bin/bash"]

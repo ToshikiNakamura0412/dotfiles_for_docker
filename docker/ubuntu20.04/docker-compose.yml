@@ -40,7 +40,7 @@ services:
         source: *GITIGNORE
         target: /home/user/.config/git/ignore
     working_dir: /home/user/ws
-    command: /bin/bash -c "bash"
+    command: /bin/bash -c "sudo apt update && bash"
     deploy:
       resources:
         reservations:
