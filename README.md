@@ -9,10 +9,10 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
 - [WIP] debian
 - [WIP] fedora
 - [WIP] opensuse
-- ubuntu ros
+- ubuntu ros (default shell: zsh)
   - 20.04 + ROS1 Noetic
   - 20.04 + ROS1 Noetic + CUDA(devel)
-- ubuntu20.04
+- ubuntu20.04 (default shell: zsh)
 ## Usage
 ### basic
 ```
