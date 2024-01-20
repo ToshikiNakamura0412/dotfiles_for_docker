@@ -1,11 +1,9 @@
 # dotfiles_for_docker
+Setting for aliases, git, neovim and tmux
 ## Clone
 ```
-git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git
+git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
 ```
-## Setting file
-- Neovim
-- tmux
 ## docker
 - [WIP] alpine3.17
 - [WIP] debian
@@ -22,6 +20,10 @@ docker compose up -d        # create and start
 docker compose exec ws bash # use shell
 docker compose down         # stop and remove
 ```
+## Font
+Set your terminal font as `Hack Nerd Font`
+
+https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular
 ## Recommendation
 - It is recommended that you build the image provided and create an image based on it.
 - Use `docker compose up` to check if the build is done correctly.
