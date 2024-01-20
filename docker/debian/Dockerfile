@@ -11,15 +11,17 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && apt-get install -y sudo git vim \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
-RUN apt-get update && apt-get upgrade -y
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     cmake \
-#     build-essential \
-#     python3 \
-#     python3-dev \
-#     python3-pip \
-#     tree \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash-completion \
+    tree \
+    cmake \
+    build-essential \
+    python3 \
+    python3-dev \
+    python3-pip
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm /etc/apt/apt.conf.d/docker-clean
+
 ENV SHELL /bin/bash
 
 USER $USERNAME
