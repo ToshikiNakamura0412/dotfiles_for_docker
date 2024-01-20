@@ -18,7 +18,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ENV SHELL /bin/bash
 
 USER $USERNAME
-RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles
-RUN ~/dotfiles/install.sh
+RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
+RUN ~/dotfiles_for_docker/install.sh
 
 CMD ["/bin/bash"]
