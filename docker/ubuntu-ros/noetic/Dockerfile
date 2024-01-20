@@ -22,8 +22,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm /etc/apt/apt.conf.d/docker-clean
 
-ENV SHELL /bin/bash
-
 USER $USERNAME
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 RUN echo "source ~/ws/devel/setup.bash" >> ~/.bashrc
@@ -31,7 +29,18 @@ RUN echo "export ROS_DISTRO=${ROS_DISTRO}" >> ~/.bashrc
 RUN echo "export ROS_WORKSPACE=~/ws" >> ~/.bashrc
 RUN echo "export ROS_PACKAGE_PATH=~/ws/src:\$ROS_PACKAGE_PATH" >> ~/.bashrc
 RUN echo "export ROSCONSOLE_FORMAT='[\${severity}] [\${time}] [\${node}]: \${message}'" >> ~/.bashrc
+ENV SHELL /bin/bash
+CMD ["/bin/bash"]
+
+
+# Use dotfiles
 RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
 RUN ~/dotfiles_for_docker/install.sh
-
-CMD ["/bin/bash"]
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.zsh" >> ~/.zshrc
+RUN echo "source ~/ws/devel/setup.zsh" >> ~/.zshrc
+RUN echo "export ROS_DISTRO=${ROS_DISTRO}" >> ~/.zshrc
+RUN echo "export ROS_WORKSPACE=~/ws" >> ~/.zshrc
+RUN echo "export ROS_PACKAGE_PATH=~/ws/src:\$ROS_PACKAGE_PATH" >> ~/.zshrc
+RUN echo "export ROSCONSOLE_FORMAT='[\${severity}] [\${time}] [\${node}]: \${message}'" >> ~/.zshrc
+ENV SHELL /bin/zsh
+CMD ["/bin/zsh"]

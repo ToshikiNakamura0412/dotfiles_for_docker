@@ -23,8 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm /etc/apt/apt.conf.d/docker-clean
 
-ENV SHELL /bin/bash
 USER $USERNAME
+ENV SHELL /bin/bash
 CMD ["/bin/bash"]
 
 
