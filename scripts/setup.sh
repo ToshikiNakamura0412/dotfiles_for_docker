@@ -1,4 +1,7 @@
 #!/bin/bash
+
+source /etc/os-release
+OS_NAME=$(echo $ID)
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 # tmux
@@ -12,3 +15,13 @@ echo ""
 
 # Neovim
 $SCRIPT_DIR/../nvim/scripts/setup_nvim.sh
+
+# zsh
+if [ $OS_NAME = "ubuntu" ]; then
+    echo ""
+    echo "setting zsh... "
+    ln -sfv $SCRIPT_DIR/../zsh/zshrc ~/.zshrc
+    ln -sfv $SCRIPT_DIR/../zsh/p10k.zsh ~/.p10k.zsh
+    echo ">>> Done"
+    echo ""
+fi

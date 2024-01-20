@@ -6,6 +6,11 @@ if [ $OS_NAME = "alpine" ]; then
     alias la='ls -lA'
     alias l='ls -la'
 elif [ $OS_NAME = "ubuntu" ]; then
+    # show git branch
+    if [ $0 = "bash" ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)\$ '
+    fi
+
     # Set basic alias commands
     alias cw='cd $ROS_WORKSPACE'
     alias cs='cd $ROS_WORKSPACE/src'

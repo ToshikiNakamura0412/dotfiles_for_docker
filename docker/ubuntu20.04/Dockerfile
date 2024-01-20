@@ -23,10 +23,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm /etc/apt/apt.conf.d/docker-clean
 
-ENV SHELL /bin/bash
-
 USER $USERNAME
+ENV SHELL /bin/bash
+CMD ["/bin/bash"]
+
+
+# Use dotfiles
 RUN git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
 RUN ~/dotfiles_for_docker/install.sh
-
-CMD ["/bin/bash"]
+ENV SHELL /bin/zsh
+CMD ["/bin/zsh"]
