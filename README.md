@@ -1,5 +1,7 @@
 # dotfiles_for_docker
-Setting for aliases, shell, git, neovim and tmux
+- Setting for aliases, shell, git, neovim and tmux
+- tmux
+  - prefix key: `Ctrl-q`
 ## Clone
 ```
 git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
@@ -34,3 +36,12 @@ https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular
 ## Recommendation
 - It is recommended that you build the image provided and create an image based on it.
 - Use `docker compose up` to check if the build is done correctly.
+## C/C++ Completion for ROS
+If you want to enable C/C++ completion for ROS, the following commands must be executed when building packages.
+```
+# enable simple completion
+# - add following paths
+#   - /opt/ros/<ROS DISTRO>/include
+#   - <target package>/include
+cd <target package>
+create-simple-compile-flags
