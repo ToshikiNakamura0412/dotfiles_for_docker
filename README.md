@@ -37,7 +37,7 @@ https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular
 - It is recommended that you build the image provided and create an image based on it.
 - Use `docker compose up` to check if the build is done correctly.
 ## C/C++ Completion for ROS
-If you want to enable C/C++ completion for ROS, the following commands must be executed when building packages.
+If you want to enable C/C++ completion for ROS, please execute the following:
 ```
 # enable simple completion
 # - add following paths
@@ -45,3 +45,8 @@ If you want to enable C/C++ completion for ROS, the following commands must be e
 #   - <target package>/include
 cd <target package>
 create-simple-compile-flags
+
+# build and enable completion related to target package
+cd <target package>
+cbt-export-compile-commands
+```
