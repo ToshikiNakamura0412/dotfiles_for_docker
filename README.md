@@ -36,6 +36,7 @@ docker compose exec ws zsh
 cd docker/<distro dir>
 code .
 ```
+- Click on `Reopen in container` to run container
 ## Font
 Set your terminal font as `Hack Nerd Font`
 
