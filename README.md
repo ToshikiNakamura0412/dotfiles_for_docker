@@ -25,9 +25,16 @@ docker compose down            # stop and remove
 ### use shell
 ```
 # bash
+cd docker/<distro dir>
 docker compose exec ws bash
 # zsh (ubuntu)
+cd docker/<distro dir>
 docker compose exec ws zsh
+```
+### use VSCode
+```
+cd docker/<distro dir>
+code .
 ```
 ## Font
 Set your terminal font as `Hack Nerd Font`
