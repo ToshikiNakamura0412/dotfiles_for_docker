@@ -12,7 +12,7 @@ elif [[ $OS_NAME = "ubuntu" ]]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)\$ '
   fi
 
-  # Set basic alias commands
+  # Set alias commands for ROS
   if [[ -d /opt/ros ]]; then
     alias cw='cd $ROS_WORKSPACE'
     alias cs='cd $ROS_WORKSPACE/src'
