@@ -18,6 +18,12 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
     - Neovim is deprecated for ROS2 development
     - Please use VSCode
 - ubuntu20.04 (default shell: zsh)
+## workspace
+- host:
+  - default: `~/ws`
+  - ROS1: `~/ros1_ws`
+  - ROS2: `~/ros2_ws`
+- container: `~/ws`
 ## Usage
 ### basic
 ```
