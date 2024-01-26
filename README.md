@@ -1,5 +1,5 @@
 # dotfiles_for_docker
-- Setting for aliases, shell, git, neovim and tmux
+- Setting for aliases, shell, git, neovim, tmux and vscode
 - tmux
   - prefix key: `Ctrl-q`
 ## Clone
