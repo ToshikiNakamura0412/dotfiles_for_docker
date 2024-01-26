@@ -1,0 +1,17 @@
+{
+    "name": "Ubuntu22.04 Dev Container",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "ws",
+    "workspaceFolder": "/home/user/ws",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cpptools-themes",
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+            ]
+        }
+    }
+}
