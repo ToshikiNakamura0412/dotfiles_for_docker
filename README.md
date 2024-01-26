@@ -11,13 +11,15 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
 - [WIP] debian
 - [WIP] fedora
 - [WIP] opensuse
+- ubuntu (default shell: zsh)
+  - 20.04
+  - 22.04
 - ubuntu ros (default shell: zsh)
   - 20.04 + ROS1 Noetic
   - 20.04 + ROS1 Noetic + CUDA(devel)
   - 22.04 + ROS2 Humble
     - Neovim is deprecated for ROS2 development
     - Please use VSCode
-- ubuntu20.04 (default shell: zsh)
 ## workspace
 - host:
   - default: `~/ws`
