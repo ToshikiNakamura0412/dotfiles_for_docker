@@ -14,6 +14,9 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
 - ubuntu ros (default shell: zsh)
   - 20.04 + ROS1 Noetic
   - 20.04 + ROS1 Noetic + CUDA(devel)
+  - 22.04 + ROS2 Humble
+    - Neovim is deprecated for ROS development
+    - Please use VSCode
 - ubuntu20.04 (default shell: zsh)
 ## Usage
 ### basic
@@ -44,17 +47,17 @@ https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular
 ## Recommendation
 - It is recommended that you build the image provided and create an image based on it.
 - Use `docker compose up` to check if the build is done correctly.
-## C/C++ Completion for ROS
-If you want to enable C/C++ completion for ROS, please execute the following:
+## [Neovim] C/C++ Completion for ROS1
+If you want to enable C/C++ completion for ROS1, please execute the following:
 ```
 # enable simple completion
 # - add following paths
 #   - /opt/ros/<ROS DISTRO>/include
 #   - <target package>/include
 cd <target package>
-create-simple-compile-flags
+create_simple_compile_flags
 
 # build and enable completion related to target package
 cd <target package>
-cbt-export-compile-commands
+cbt_export_compile_commands
 ```
