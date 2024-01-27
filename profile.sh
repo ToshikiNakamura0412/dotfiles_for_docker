@@ -43,7 +43,12 @@ elif [[ $OS_NAME = "ubuntu" ]]; then
 
     else
       # Set alias commands for build
-      alias cb='cw && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo'
+      function cb() {
+        local pwd=$(pwd)
+        cd $ROS_WORKSPACE
+        colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
+        cd $pwd
+      }
       function cbt() {
         if [[ -e package.xml ]]; then
           local pwd=$(pwd)
@@ -65,6 +70,13 @@ elif [[ $OS_NAME = "ubuntu" ]]; then
           cd $ROS_WORKSPACE
           rm -rf build install log
           cd $pwd
+        fi
+        unset AMENT_PREFIX_PATH
+        unset CMAKE_PREFIX_PATH
+        if [[ $0 = "bash" ]]; then
+          source /opt/ros/humble/setup.bash
+        else
+          source /opt/ros/humble/setup.zsh
         fi
       }
 
