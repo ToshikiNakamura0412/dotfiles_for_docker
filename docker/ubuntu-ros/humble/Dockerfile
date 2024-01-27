@@ -29,7 +29,7 @@ RUN echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> 
 RUN echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc
 RUN echo "export ROS_DISTRO=${ROS_DISTRO}" >> ~/.bashr
 RUN echo "export ROS_WORKSPACE=~/ws" >> ~/.bashrc
-RUN echo "export _colcon_cd_root=$ROS_WORKSPACE" >> ~/.bashrc
+RUN echo "export _colcon_cd_root=\$ROS_WORKSPACE" >> ~/.bashrc
 ENV SHELL /bin/bash
 CMD ["/bin/bash"]
 
@@ -43,7 +43,7 @@ RUN echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh" >> ~
 RUN echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.zshrc
 RUN echo "export ROS_DISTRO=${ROS_DISTRO}" >> ~/.zshrc
 RUN echo "export ROS_WORKSPACE=~/ws" >> ~/.zshrc
-RUN echo "export _colcon_cd_root=$ROS_WORKSPACE" >> ~/.zshrc
+RUN echo "export _colcon_cd_root=\$ROS_WORKSPACE" >> ~/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.zshrc
 ENV SHELL /bin/zsh
