@@ -18,7 +18,7 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
   - 20.04 + ROS1 Noetic
   - 20.04 + ROS1 Noetic + CUDA(devel)
   - 22.04 + ROS2 Humble
-    - Neovim is deprecated for ROS2 C/C++ development
+    - **Neovim is deprecated for ROS2 C/C++ development**
     - Please use VSCode
 ## workspace
 - host:
