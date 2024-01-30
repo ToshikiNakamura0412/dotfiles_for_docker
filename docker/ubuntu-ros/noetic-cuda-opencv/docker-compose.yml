@@ -1,7 +1,7 @@
 version: "3.9"
 
 x-workspace-source: &WORKSPACE_SOURCE
-  "~/ws"
+  "~/ros1_ws"
 x-profile: &PROFILE
   "~/dotfiles_for_docker/profile.sh"
 x-gitconfig: &GITCONFIG
