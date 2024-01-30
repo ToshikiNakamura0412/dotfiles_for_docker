@@ -1,12 +1,12 @@
 # ROS Noetic CUDA OpenCV
 ## build
-### build image ros-noetic-cuda
+### build image noetic-cuda-ws
 If you already build this image, skip this process.
 ```
 cd ~/dotfiles_for_docker/docker/ubuntu-ros/noetic-cuda
 docker compose build
 ```
-### build image ros-noetic-cuda-opencv
+### build image noetic-cuda-opencv-ws
 If you already build the image ros-noetic-cuda, please execute the following:
 ```
 cd ~/dotfiles_for_docker/docker/ubuntu-ros/noetic-cuda-opencv
