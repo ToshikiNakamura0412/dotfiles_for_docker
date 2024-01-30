@@ -1,0 +1,50 @@
+version: "3.9"
+
+x-workspace-source: &WORKSPACE_SOURCE
+  "~/ws"
+x-profile: &PROFILE
+  "~/dotfiles_for_docker/profile.sh"
+x-gitconfig: &GITCONFIG
+  "~/dotfiles_for_docker/gitconfig"
+x-gitignore: &GITIGNORE
+  "~/dotfiles_for_docker/gitignore"
+
+services:
+  ws:
+    container_name: noetic-cuda-opencv-ws
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ipc: host
+    network_mode: "host"
+    tty: true
+    privileged: true
+    environment:
+      TERM: screen-256color
+      LANG: C.UTF-8
+      DISPLAY: $DISPLAY
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: *WORKSPACE_SOURCE
+        target: /home/user/ws
+      - type: bind
+        source: *PROFILE
+        target: /home/user/.bash_aliases
+      - type: bind
+        source: *GITCONFIG
+        target: /home/user/.gitconfig
+      - type: bind
+        source: *GITIGNORE
+        target: /home/user/.config/git/ignore
+    working_dir: /home/user/ws
+    command: /bin/bash -c "sudo apt update && bash"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

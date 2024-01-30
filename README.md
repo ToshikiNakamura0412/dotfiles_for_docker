@@ -17,6 +17,8 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
 - ubuntu ros (default shell: zsh)
   - 20.04 + ROS1 Noetic
   - 20.04 + ROS1 Noetic + CUDA(devel)
+  - 20.04 + ROS1 Noetic + CUDA(devel) + OpenCV
+    - This is a different build procedure from the others, so please refer to [README.md](https://github.com/ToshikiNakamura0412/dotfiles_for_docker/tree/master/docker/ubuntu-ros/noetic-cuda-opencv/README.md)
   - 22.04 + ROS2 Humble
     - **Neovim is deprecated for ROS2 C/C++ development**
     - Please use VSCode
