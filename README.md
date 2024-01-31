@@ -16,6 +16,8 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
   - 22.04
 - ubuntu ros (default shell: zsh)
   - 20.04 + ROS1 Noetic
+  - 20.04 + ROS1 Noetic + PCL
+    - This is a different build procedure from the others, so please refer to [README.md](https://github.com/ToshikiNakamura0412/dotfiles_for_docker/tree/master/docker/ubuntu-ros/noetic-pcl/README.md)
   - 20.04 + ROS1 Noetic + CUDA(devel)
   - 20.04 + ROS1 Noetic + CUDA(devel) + OpenCV
     - This is a different build procedure from the others, so please refer to [README.md](https://github.com/ToshikiNakamura0412/dotfiles_for_docker/tree/master/docker/ubuntu-ros/noetic-cuda-opencv/README.md)
