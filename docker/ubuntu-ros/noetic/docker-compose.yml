@@ -10,6 +10,8 @@ x-gitignore: &GITIGNORE
   "~/dotfiles_for_docker/gitignore"
 x-bag-source: &BAG_SOURCE
   "~/bagfiles"
+x-pcd-source: &PCD_SOURCE
+  "~/pcd"
 
 services:
   ws:
@@ -44,6 +46,9 @@ services:
       - type: bind
         source: *BAG_SOURCE
         target: /home/user/bagfiles
+      - type: bind
+        source: *PCD_SOURCE
+        target: /home/user/pcd
     working_dir: /home/user/ws
     command: /bin/bash -c "sudo apt update && sudo rosdep update && sudo rosdep install -riy --from-paths src --rosdistro noetic && bash"
     deploy:
