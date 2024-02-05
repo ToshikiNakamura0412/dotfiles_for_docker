@@ -47,6 +47,7 @@ cd docker/<distro dir>
 docker compose exec ws zsh
 ```
 ### use VSCode
+prerequisite: extension `ms-vscode-remote.remote-containers`
 ```
 cd docker/<distro dir>
 code .
