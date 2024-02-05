@@ -39,10 +39,10 @@ docker compose down            # stop and remove
 ```
 ### use shell
 ```
-# bash
+# bash (All Distro Support)
 cd docker/<distro dir>
 docker compose exec ws bash
-# zsh (ubuntu)
+# zsh (Ubuntu Support)
 cd docker/<distro dir>
 docker compose exec ws zsh
 ```
