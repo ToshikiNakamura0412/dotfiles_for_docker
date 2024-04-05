@@ -6,6 +6,10 @@
 ```
 git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker.git ~/dotfiles_for_docker
 ```
+## install for docker
+```
+~/dotfiles_for_docker/install.sh
+```
 ## docker
 - [WIP] alpine3.17
 - [WIP] debian
@@ -24,20 +28,24 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
   - 22.04 + ROS2 Humble
     - **Neovim is deprecated for ROS2 C/C++ development**
     - Please use VSCode
-## workspace
+### workspace
 - host:
   - default: `~/ws`
   - ROS1: `~/ros1_ws`
   - ROS2: `~/ros2_ws`
 - container: `~/ws`
-## Usage
-### basic
+### Usage
+#### setup
+```
+~/dotfiles_for_docker/setup_host.sh
+```
+#### basic usage
 ```
 cd docker/<distro dir>
 docker compose up [option -d]  # create and start
 docker compose down            # stop and remove
 ```
-### use shell
+#### use shell
 ```
 # bash (All Distro Support)
 cd docker/<distro dir>
@@ -46,7 +54,7 @@ docker compose exec ws bash
 cd docker/<distro dir>
 docker compose exec ws zsh
 ```
-### use VSCode
+#### use VSCode
 prerequisite: extension `ms-vscode-remote.remote-containers`
 ```
 cd docker/<distro dir>
