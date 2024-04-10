@@ -35,6 +35,7 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
   - ROS2: `~/ros2_ws`
 - container: `~/ws`
 ### Usage
+If you do not have a GPU, comment out the deploy section in docker-compose.yml.
 #### setup
 ```
 ~/dotfiles_for_docker/setup_host.sh
