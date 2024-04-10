@@ -43,6 +43,8 @@ git clone --recursive https://github.com/ToshikiNakamura0412/dotfiles_for_docker
 ```
 cd docker/<distro dir>
 docker compose up [option -d]  # create and start
+docker compose start           # start
+docker compose stop            # stop
 docker compose down            # stop and remove
 ```
 #### use shell
@@ -50,6 +52,7 @@ docker compose down            # stop and remove
 # bash (All Distro Support)
 cd docker/<distro dir>
 docker compose exec ws bash
+
 # zsh (Ubuntu Support)
 cd docker/<distro dir>
 docker compose exec ws zsh
