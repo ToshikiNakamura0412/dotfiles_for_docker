@@ -36,3 +36,11 @@ fi
 ln -sfv $SCRIPT_DIR/../gitignore ~/.config/git/ignore
 echo ">>> Done"
 echo ""
+
+# alias
+echo "setting alias... "
+echo "source $SCRIPT_DIR/../profile.sh" >> ~/.bashrc
+if [ -f ~/.zshrc ]; then
+    echo "source $SCRIPT_DIR/../profile.sh" >> ~/.zshrc
+fi
+echo ">>> Done"
