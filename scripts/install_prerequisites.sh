@@ -11,8 +11,10 @@ elif [ $OS_NAME = "alpine" ]; then
     sudo apk update && sudo apk add tmux
 fi
 
-# Neovim
-$SCRIPT_DIR/../nvim/scripts/install_prerequisites.sh
+# vim
+if [ $OS_NAME = "ubuntu" ] || [ $OS_NAME = "debian" ]; then
+    sudo apt-get update && sudo apt-get install -y --no-install-recommends vim-gtk
+fi
 
 # zsh
 if [ $OS_NAME = "ubuntu" ]; then

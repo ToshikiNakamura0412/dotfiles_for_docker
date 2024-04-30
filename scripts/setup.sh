@@ -13,8 +13,9 @@ ln -sfv $SCRIPT_DIR/../tmux.conf ~/.tmux.conf
 echo ">>> Done"
 echo ""
 
-# Neovim
-$SCRIPT_DIR/../nvim/scripts/setup_nvim.sh
+# Vim/Neovim
+$SCRIPT_DIR/../nvim/configs/basic/install.sh
+$SCRIPT_DIR/../nvim/install.sh
 
 # zsh
 if [ $OS_NAME = "ubuntu" ]; then
@@ -25,3 +26,13 @@ if [ $OS_NAME = "ubuntu" ]; then
     echo ">>> Done"
     echo ""
 fi
+
+# git
+echo "setting git... "
+ln -sfv $SCRIPT_DIR/../gitconfig ~/.gitconfig
+if [ ! -d ~/.config/git ]; then
+    mkdir -pv ~/.config/git
+fi
+ln -sfv $SCRIPT_DIR/../gitignore ~/.config/git/ignore
+echo ">>> Done"
+echo ""
