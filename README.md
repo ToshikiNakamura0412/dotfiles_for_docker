@@ -1,4 +1,7 @@
 # dotfiles_for_docker
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 - This repository is developed for [dockerfiles](https://github.com/ToshikiNakamura0412/dockerfiles.git)
 - Setting for aliases, shell, git, neovim and tmux
 - tmux
