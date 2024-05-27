@@ -23,6 +23,8 @@ if [ $OS_NAME = "ubuntu" ]; then
     echo "setting zsh... "
     ln -sfv $SCRIPT_DIR/../zsh/zshrc ~/.zshrc
     ln -sfv $SCRIPT_DIR/../zsh/p10k.zsh ~/.p10k.zsh
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
     echo ">>> Done"
     echo ""
 fi
